@@ -561,5 +561,3 @@ server {
   - `root /var/www/html;`: Specifies the document root.
   - `index index.html index.htm;`: Defines index files.
   - `location / { ... }`: Handles requests to the root URL.
-
-
