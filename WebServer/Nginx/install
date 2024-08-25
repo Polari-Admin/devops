@@ -1,3 +1,4 @@
+link :  https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04
 Introduction
 
 Nginx is one of the most popular web servers in the world and is responsible for hosting some of the largest and highest-traffic sites on the internet. It is a lightweight choice that can be used as either a web server or reverse proxy.
