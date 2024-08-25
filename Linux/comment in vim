@@ -1,0 +1,15 @@
+
+Visual Block Mode
+
+    First, move the cursor to the first char of the first line in block code you want to comment, then type Ctrl + v.
+
+    Then vim will go into VISUAL BLOCK mode.
+
+    Use j to move the cursor down until you reach the last line of your code block. Then type: Shift + i
+
+    Now vim goes to INSERT mode and the cursor is at the first char of the first line. Finally, type # then ESC and the code block is now commented.
+
+Note that at first sight, the editing does not seem to differ from changing a single line. The changes will only be applied to the whole block after hitting ESC.
+
+To uncomment, do the same things but instead of type Shift + i, you just type x to remove all # after highlight them in VISUAL BLOCK mode.
+ref url :  https://unix.stackexchange.com/questions/120615/how-to-comment-multiple-lines-at-once
