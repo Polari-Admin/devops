@@ -1,1 +1,44 @@
+/////////playbook in roolname.yml
+
+
+---
+- hosts: localhost
+  vars:
+    webapp_port: 6666
+    webapp_env: "playbook_vars"
+    webapp_version: "6"
+  roles:
+    - webapp
+
+
+# ansible-playbook site.yml -e "webapp_version=5 webapp_port=5555 webapp_env=extra_vars"
+
+
+//////////task folder in main.yml
+- name: Deploy the web application
+  vars:
+      webapp_port: 2222
+      webapp_env: "task_vars"
+      webapp_version: "2"
+  debug:
+    msg: "Deploying version {{ webapp_version }} to {{ inventory_hostname }} on port {{ webapp_port }} in {{ webapp_env }} environment."
+
+
+
+//////////host_vars  folder in localhost.yml
+---
+webapp_port: 3333
+webapp_env: "host_vars"
+webapp_version: "3"
+
+
+
+
+/////////group_vars folder in localhost.yml
+---
+webapp_port: 4444
+webapp_env: "group_vars"
+webapp_version: "4"
+
+
 
