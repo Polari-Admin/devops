@@ -1,0 +1,4 @@
+/////////conect to anther server without pass/////////////
+1.ssh-keygen
+2.ssh-copy-id  root@(server ip that we want to connect)
+for more detail we can copy publickey in ssh folder
