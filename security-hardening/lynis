@@ -11,3 +11,9 @@ $ apt-get install lynis
 
 Running Lynis
 $ lynis audit system
+
+
+////////////////////////////////
+////////////////////////////////
+another ref:
+https://valentesecuritylabs.medium.com/audit-and-hardening-linux-machines-with-lynis-d6b5d8469ba9
