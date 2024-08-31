@@ -1,0 +1,13 @@
+best guid url:
+
+https://cisofy.com/documentation/lynis/get-started/
+
+1. Installation via package
+
+Debian
+Systems running Debian, Linux Mint, Ubuntu, or are based on one of these.
+
+$ apt-get install lynis
+
+Running Lynis
+$ lynis audit system
