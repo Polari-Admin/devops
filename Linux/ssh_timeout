@@ -1,0 +1,22 @@
+url ref:
+https://www.tutorialspoint.com/how-to-increase-ssh-connection-timeout-in-linux
+
+
+/////////////////
+/////////////////
+Step 3: Locate the ClientAliveInterval and ClientAliveCountMax Parameters
+
+In the sshd_config file, locate the following parameters −
+
+ClientAliveInterval
+ClientAliveCountMax
+
+The ClientAliveInterval parameter specifies the time interval in seconds after which the server will send a keep-alive message to the client. The ClientAliveCountMax parameter specifies the number of keep-alive messages that can be sent without a response from the client before the server terminates the connection.
+Step 4: Increase the ClientAliveInterval and ClientAliveCountMax Values
+
+To increase the SSH connection timeout, you need to increase the values of the ClientAliveInterval and ClientAliveCountMax parameters. For example, to increase the timeout to 60 minutes, set the values as follows −
+
+ClientAliveInterval 600
+ClientAliveCountMax 6
+
+The ClientAliveInterval is set to 600 seconds (60 minutes), and the ClientAliveCountMax is set to 6. This means that the server will send a keep-alive message every 10 minutes, and the connection will be terminated after one hour of inactivity.
