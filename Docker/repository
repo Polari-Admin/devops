@@ -1,0 +1,10 @@
+1.add iran repo
+2.use snap docker install and ..... for install docker
+3.for docker compose use digtal oction document
+4. for pull image use 
+   aravn repo for image docker document
+   and aslo:  hub.mecan.ir or hub.hamdocker.ir
+5.it is very important use docker image with tag number 
+for example:
+     pull treafik(is incorrect)
+     pull treafik: 7.0.2 (is correct)
