@@ -1,0 +1,28 @@
+    name: traefik-acme
+
+services:
+  traefik:
+    image: traefik:v2.10.4
+    restart: always
+    container_name: traefik
+    command:
+      - --api=true
+      - --api.insecure=true
+      - --ping=true
+      - --accesslog=true
+      - --providers.docker.endpoint=unix:///var/run/docker.sock
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=web_net
+      - --entrypoints.http.address=:80
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=web_net
+      - traefik.http.routers.traefik.entrypoints=http
+      - traefik.http.routers.traefik.rule=Host(`37.32.15.43`)
+      - traefik.http.services.traefik.loadbalancer.server.port=8080
+    networks:
+      - web_net
