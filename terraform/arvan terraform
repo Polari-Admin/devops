@@ -1,0 +1,50 @@
+provider "arawan" {
+  api_key = "YOUR_ARAWAN_API_KEY"
+  region  = "ir-thr-at1"
+}
+
+resource "arawan_network" "my_network" {
+  name = "my-network"
+  cidr = "10.0.0.0/16"
+}
+
+resource "arawan_subnet" "my_subnet" {
+  name       = "my-subnet"
+  network_id = arawan_network.my_network.id
+  cidr       = "10.0.1.0/24"
+}
+
+resource "arawan_public_ip" "my_public_ip" {
+  name = "my-public-ip"
+}
+
+resource "arawan_instance" "my_instance" {
+  name        = "my-ubuntu-vm"
+  subnet_id   = arawan_subnet.my_subnet.id
+  public_ip   = arawan_public_ip.my_public_ip.ip
+  flavor      = "g1.small"
+  image       = "ubuntu-22.04"
+  key_pair    = "my-ssh-key"
+
+  root_disk {
+    size = 20
+    type = "ssd"
+  }
+
+  network_interface {
+    subnet_id = arawan_subnet.my_subnet.id
+  }
+
+  user_data = <<-EOF
+              #cloud-config
+              users:
+                - name: ubuntu
+                  sudo: ALL=(ALL) NOPASSWD:ALL
+                  shell: /bin/bash
+              ssh_pwauth: no
+              EOF
+}
+
+output "public_ip" {
+  value = arawan_instance.my_instance.public_ip
+}
