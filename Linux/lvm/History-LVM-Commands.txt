@@ -1,0 +1,72 @@
+    1  cd 
+    2  apt install bash-completion 
+    3  pvs
+    4  lsbl
+    5  lsblk
+    6  vgs
+    7  lvs
+    8  fdisk /dev/sdb 
+    9  lsblk 
+   10  vgs
+   11  vgextend debian-12-vg /dev/sdb1
+   12  vgs
+   13  lvs
+   14  ls /dev/mapper/debian--12--vg-root 
+   15  lvextend -l 100%Free /dev/mapper/debian--12--vg-root
+   16  lvextend -l +100%Free /dev/mapper/debian--12--vg-root
+   17  lvs
+   18  df -h 
+   19  resize2fs /dev/mapper/debian--12--vg-root 
+   20  df -h 
+   21  lsblk 
+   22  vgcreate MeCan-vg /dev/sdb2
+   23  vgs
+   24  lvs
+   25  vgs
+   26  lvcreate -L +100%Free -n backup MeCan-vg 
+   27  lvcreate -l +100%Free -n backup MeCan-vg 
+   28  vgs
+   29  lvs
+   30  lsblk 
+   31  fdisk /dev/sdd 
+   32  lsblk 
+   33  fdisk /dev/sdc 
+   34  lsblk 
+   35  mkdir /mnt/backup
+   36  mount -rw /dev/mapper/MeCan--vg-backup /mnt/backup
+   37  mkfs.ext4 /dev/mapper/MeCan--vg-backup 
+   38  mount -rw /dev/mapper/MeCan--vg-backup /mnt/backup
+   39  df -h 
+   40  vgextend MeCan-vg /dev/sdc1
+   41  vgs
+   42  lvextend -l +100%Free /dev/mapper/MeCan--vg-backup 
+   43  lsblk 
+   44  df -h 
+   45  resize2fs /dev/mapper/MeCan--vg-backup 
+   46  df -h 
+   47  vgextend debian-12-vg /dev/sdd1
+   48  vgextend debian-12-vg /dev/sdd2
+   49  vgs
+   50  lvextend -l +20%Free /dev/mapper/debian--12--vg-swap_1 
+   51  lvs
+   52  resize2fs /dev/mapper/debian--12--vg-swap_1 
+   53  lvextend -l +100%Free /dev/mapper/debian--12--vg-root
+   54  lvs 
+   55  vgs
+   56  vgextend MeCan-vg /dev/sdd3
+   57  lvextend -l +100%Free /dev/mapper/MeCan-vg--backup
+   58  lvextend -l +100%Free /dev/mapper/MeCan--vg-backup
+   59  lss 
+   60  lvs
+   61  resize2fs /dev/mapper/MeCan--vg-backup 
+   62  resize2fs /dev/mapper/debian--12--vg-root 
+   63  df -h 
+   64  fdisk /dev/sdc
+   65  fdisk /dev/sdd
+   66  resize2fs /dev/mapper/debian--12--vg-swap_1 
+   67  pvs
+   68  df -h 
+   69  history 
+   70  df -h 
+   71  lsblk 
+   72  history > History-LVM-Commands.txt

@@ -1,0 +1,23 @@
+Filesystem UUID: b96ad313-82d6-4d59-ae16-5a28722a4136
+
+vgs
+lvs
+
+vgcreate vg0  /dev/sda4
+
+ vgextend debian-12-vg /dev/sdb1
+
+vgextend debian-12-vg /dev/sdb1
+
+lvcreate -l +100%Free -n lv0 vg0
+
+lvextend -l +100%Free /dev/mapper/debian--12--vg-root
+
+resize2fs /dev/mapper/......
+
+mkfs.ext4 /dev/mapper/vg0-lv0
+
+
+echo '/dev/mapper/lv0  /var/data  ext4  defaults 0 2' | sudo  tee -a /etc/fstab
+
+sudo mount -a
