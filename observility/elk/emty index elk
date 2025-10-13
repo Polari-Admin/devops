@@ -1,0 +1,73 @@
+/////پاک کردن از ذاخل قسمت منیجمنت و  devtoolsقسمت
+
+GET _cat/indices?v
+DELETE  .ds-logs-generic-default-2025.06.20-000199
+دو دستور بالا برای خالی کردن کفایت می کند
+
+/////////////
+🔹 ۲. دیدن حجم کل هر نود
+
+GET _cat/allocation?v
+
+
+🔹 ۳. دیدن ایندکس‌های سیستم (پنهان)
+
+GET _cat/indices/.?v
+
+
+🔹 ۴. بررسی وضعیت سلامت کلی خوشه (cluster health)
+
+GET _cluster/health?pretty
+
+🔹 ۵. آزادسازی فضا از داده‌های حذف‌شده (Force Merge)
+POST _forcemerge?only_expunge_deletes=true
+
+🔹 ۶. دیدن مجموع حجم داده روی دیسک
+GET _stats/store
+
+
+//////////////
+
+پاک کردن با کامند از شل لینوکس
+
+
+⚙️ مرحله ۱: بررسی فضای فعلی
+df -h
+
+
+🔍 مرحله ۲: دیدن ایندکس‌ها در Elasticsearch
+curl -X GET "localhost:9200/_cat/indices?v"
+
+
+🗑️ مرحله ۳: حذف ایندکس‌های قدیمی
+curl -X DELETE "localhost:9200/logstash-2025.09.*"
+
+
+🧠 مرحله ۴: اتومات‌کردن با ILM یا Curator
+
+PUT _ilm/policy/delete-old-indices
+{
+  "policy": {
+    "phases": {
+      "delete": {
+        "min_age": "7d",
+        "actions": {
+          "delete": {}
+        }
+      }
+    }
+  }
+}
+
+
+💡 مرحله ۵: بازپس‌گیری فضای دیسک (اختیاری)
+
+curl -X POST "localhost:9200/_forcemerge?only_expunge_deletes=true"
+
+
+
+
+
+
+
+
